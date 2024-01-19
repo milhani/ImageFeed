@@ -1,8 +1,3 @@
-//
-//  ImagesListCell.swift
-//  ImageFeed
-//
-
 import UIKit
 
 final class ImagesListCell: UITableViewCell {
