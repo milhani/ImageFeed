@@ -109,6 +109,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="5dB-cV-Fa1">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="7xw-tT-GUT" userLabel="Image View">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="7xw-tT-GUT" firstAttribute="leading" secondItem="5dB-cV-Fa1" secondAttribute="leading" id="4cq-4G-pdD"/>
+                                    <constraint firstAttribute="bottom" secondItem="7xw-tT-GUT" secondAttribute="bottom" id="5Zn-NF-OGW"/>
+                                    <constraint firstAttribute="trailing" secondItem="7xw-tT-GUT" secondAttribute="trailing" id="CLE-fK-UxW"/>
+                                    <constraint firstItem="7xw-tT-GUT" firstAttribute="top" secondItem="5dB-cV-Fa1" secondAttribute="top" id="pZ0-aK-odR"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="sI2-uL-QqB"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="pfn-bx-YBy"/>
+                                <connections>
+                                    <outlet property="delegate" destination="DId-NH-YrC" id="hh7-Jt-vdW"/>
+                                </connections>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bc-F1-9Eu" userLabel="Share Button">
+                                <rect key="frame" x="182" y="810" width="50" height="50"/>
+                                <buttonConfiguration key="configuration" style="plain" image="share_button"/>
+                                <connections>
+                                    <action selector="didTapShareButton:" destination="DId-NH-YrC" eventType="touchUpInside" id="udG-hf-30M"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NAM-am-n3x">
                                 <rect key="frame" x="8" y="8" width="48" height="48"/>
                                 <constraints>
@@ -121,22 +147,6 @@
                                     <action selector="didTapBackButton" destination="DId-NH-YrC" eventType="touchUpInside" id="eJq-7v-fO3"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="5dB-cV-Fa1">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="414" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="7xw-tT-GUT" userLabel="Image View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="7xw-tT-GUT" firstAttribute="leading" secondItem="5dB-cV-Fa1" secondAttribute="leading" id="4cq-4G-pdD"/>
-                                    <constraint firstAttribute="bottom" secondItem="7xw-tT-GUT" secondAttribute="bottom" id="5Zn-NF-OGW"/>
-                                    <constraint firstAttribute="trailing" secondItem="7xw-tT-GUT" secondAttribute="trailing" id="CLE-fK-UxW"/>
-                                    <constraint firstItem="7xw-tT-GUT" firstAttribute="top" secondItem="5dB-cV-Fa1" secondAttribute="top" id="pZ0-aK-odR"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="sI2-uL-QqB"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="pfn-bx-YBy"/>
-                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GRa-t6-lqi"/>
                         <color key="backgroundColor" name="YP Black"/>
@@ -145,7 +155,9 @@
                             <constraint firstItem="NAM-am-n3x" firstAttribute="leading" secondItem="GRa-t6-lqi" secondAttribute="leading" constant="8" id="9eD-LP-mbk"/>
                             <constraint firstItem="NAM-am-n3x" firstAttribute="top" secondItem="GRa-t6-lqi" secondAttribute="top" constant="8" id="Tbp-iV-5nJ"/>
                             <constraint firstItem="5dB-cV-Fa1" firstAttribute="leading" secondItem="GRa-t6-lqi" secondAttribute="leading" id="XDs-LB-KDI"/>
+                            <constraint firstItem="GRa-t6-lqi" firstAttribute="bottom" secondItem="0Bc-F1-9Eu" secondAttribute="bottom" constant="36" id="aRZ-6A-teP"/>
                             <constraint firstAttribute="bottom" secondItem="5dB-cV-Fa1" secondAttribute="bottom" id="mNn-M3-mxa"/>
+                            <constraint firstItem="0Bc-F1-9Eu" firstAttribute="centerX" secondItem="GRa-t6-lqi" secondAttribute="centerX" id="wnJ-LL-40T"/>
                             <constraint firstItem="5dB-cV-Fa1" firstAttribute="top" secondItem="pQr-ZE-qrz" secondAttribute="top" id="ydZ-cX-jbW"/>
                         </constraints>
                     </view>
@@ -268,6 +280,7 @@
         <image name="like_button_on" width="42" height="42"/>
         <image name="logout_button" width="24" height="24"/>
         <image name="nav_back_button_white" width="24" height="24"/>
+        <image name="share_button" width="50" height="50"/>
         <image name="tab_editorial_active" width="30" height="30"/>
         <image name="tab_profile_active" width="30" height="30"/>
         <namedColor name="YP Background">
