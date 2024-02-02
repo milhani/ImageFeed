@@ -72,6 +72,7 @@
                                             <outlet property="cellImage" destination="UHT-CC-7rY" id="yxh-h1-gfg"/>
                                             <outlet property="dateLabel" destination="zZ7-qv-kLf" id="zyR-HJ-Elu"/>
                                             <outlet property="likeButton" destination="sdE-8c-JJO" id="bJ8-ua-pp3"/>
+                                            <segue destination="DId-NH-YrC" kind="show" id="shU-zc-nBC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -98,6 +99,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-657.97101449275362" y="-958.25892857142856"/>
+        </scene>
+        <!--Single Image View Controller-->
+        <scene sceneID="SYL-vq-aXK">
+            <objects>
+                <viewController id="DId-NH-YrC" customClass="SingleImageViewController" customModule="Image_Feed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pQr-ZE-qrz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="7xw-tT-GUT" userLabel="Image View">
+                                <rect key="frame" x="0.0" y="92" width="414" height="721"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GRa-t6-lqi"/>
+                        <color key="backgroundColor" name="YP Black"/>
+                        <constraints>
+                            <constraint firstItem="7xw-tT-GUT" firstAttribute="top" secondItem="GRa-t6-lqi" secondAttribute="top" id="APb-LM-qHD"/>
+                            <constraint firstItem="7xw-tT-GUT" firstAttribute="leading" secondItem="GRa-t6-lqi" secondAttribute="leading" id="Q1E-qo-Wrf"/>
+                            <constraint firstItem="GRa-t6-lqi" firstAttribute="trailing" secondItem="7xw-tT-GUT" secondAttribute="trailing" id="iHT-Wu-cvF"/>
+                            <constraint firstItem="GRa-t6-lqi" firstAttribute="bottom" secondItem="7xw-tT-GUT" secondAttribute="bottom" id="s8a-de-M3m"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="X3A-DR-wYG"/>
+                    <connections>
+                        <outlet property="imageView" destination="7xw-tT-GUT" id="bXE-9o-5st"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Xk-32-MTm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="100" y="-958"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Rh3-Wz-odN">
@@ -194,7 +225,7 @@
                         <outlet property="descriptionLabel" destination="zaU-Ee-pV8" id="npM-ZV-9zS"/>
                         <outlet property="loginNameLabel" destination="Zvy-Yp-y3m" id="z57-5d-y1N"/>
                         <outlet property="logoutButton" destination="RyV-3W-sZt" id="f51-BK-L9j"/>
-                        <outlet property="nameLabel" destination="qVh-pZ-m4w" id="TDh-wb-7vc"/>
+                        <outlet property="nameLabel" destination="ClH-hA-iWF" id="XRU-fb-1KZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="scl-5J-Y3q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

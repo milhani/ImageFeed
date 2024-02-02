@@ -1,8 +1,6 @@
-//
-//  SingleImageViewController.swift
-//  Image Feed
-//
-//  Created by Людмила Ханина on 02.02.2024.
-//
+import UIKit
 
-import Foundation
+final class SingleImageViewController: UIViewController {
+    
+    @IBOutlet var imageView: UIImageView!
+}
