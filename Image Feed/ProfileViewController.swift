@@ -1,18 +1,17 @@
-//
-//  ProfileViewController.swift
-//  Image Feed
-//
-//  Created by Людмила Ханина on 02.02.2024.
-//
 
-import SwiftUI
+import UIKit
 
-struct ProfileViewController: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+class ProfileViewController: UIViewController {
+    
+    @IBOutlet private var avatarImage: UIImageView!
+    
+    @IBOutlet private var descriptionLabel: UILabel!
+    @IBOutlet private var loginNameLabel: UILabel!
+    @IBOutlet private var nameLabel: UIImageView!
+    
+    @IBOutlet private var logoutButton: UIButton!
+    
+    @IBAction func didTapLogoutButton() {
     }
-}
-
-#Preview {
-    ProfileViewController()
 }
