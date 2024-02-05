@@ -27,11 +27,10 @@ final class SingleImageViewController: UIViewController {
         scrollView.maximumZoomScale = 8 //1.25
         imageView.image = image
         rescaleAndCenterImageInScrollView(image: image)
-        print("didload")
     }
     @IBAction func didTapShareButton(_ sender: Any) {
         let share = UIActivityViewController(
-            activityItems: [image ?? 1],
+            activityItems: [image],
             applicationActivities: nil
         )
         present(share, animated: true, completion: nil)
@@ -41,7 +40,6 @@ final class SingleImageViewController: UIViewController {
         if let image = imageView.image {
             let zoom = max(scrollView.bounds.size.width / image.size.width,
                               scrollView.bounds.size.height / image.size.height)
-            print(zoom)
             scrollView.setZoomScale(zoom, animated: false)
             scrollView.layoutIfNeeded()
         }

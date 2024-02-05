@@ -208,74 +208,10 @@
                     <view key="view" contentMode="scaleToFill" id="PIS-7A-apZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Екатерина Новикова" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClH-hA-iWF" userLabel="Name Label">
-                                <rect key="frame" x="16" y="158" width="382" height="28"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
-                                <color key="textColor" name="YP White"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="qVh-pZ-m4w" userLabel="Avatar Image">
-                                <rect key="frame" x="16" y="80" width="70" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="eYG-KH-vUV"/>
-                                    <constraint firstAttribute="height" constant="70" id="vCi-Ue-t2r"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="35"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@ekaterina_nov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvy-Yp-y3m" userLabel="Login Name Label">
-                                <rect key="frame" x="16" y="194" width="382" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" name="YP Gray"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, World!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaU-Ee-pV8" userLabel="Description Label">
-                                <rect key="frame" x="16" y="218" width="382" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" name="YP White"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RyV-3W-sZt" userLabel="Logout Button">
-                                <rect key="frame" x="374" y="103" width="24" height="24"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="logout_button"/>
-                                <connections>
-                                    <action selector="didTapLogoutButton:" destination="bz0-wT-p9U" eventType="touchUpInside" id="EwD-I6-7yE"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="CVn-a5-but"/>
                         <color key="backgroundColor" name="YP Black"/>
-                        <constraints>
-                            <constraint firstItem="zaU-Ee-pV8" firstAttribute="trailing" secondItem="ClH-hA-iWF" secondAttribute="trailing" id="02d-Lj-ph6"/>
-                            <constraint firstItem="zaU-Ee-pV8" firstAttribute="top" secondItem="Zvy-Yp-y3m" secondAttribute="bottom" constant="8" id="11x-n1-Yi1"/>
-                            <constraint firstItem="Zvy-Yp-y3m" firstAttribute="top" secondItem="ClH-hA-iWF" secondAttribute="bottom" constant="8" id="1jk-oQ-8W6"/>
-                            <constraint firstItem="Zvy-Yp-y3m" firstAttribute="trailing" secondItem="ClH-hA-iWF" secondAttribute="trailing" id="3Hp-tw-r67"/>
-                            <constraint firstItem="RyV-3W-sZt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qVh-pZ-m4w" secondAttribute="trailing" id="9DE-ze-cW3"/>
-                            <constraint firstItem="RyV-3W-sZt" firstAttribute="top" secondItem="CVn-a5-but" secondAttribute="top" constant="55" id="CEa-vz-UdQ"/>
-                            <constraint firstItem="Zvy-Yp-y3m" firstAttribute="leading" secondItem="ClH-hA-iWF" secondAttribute="leading" id="EAv-Yb-V9X"/>
-                            <constraint firstItem="qVh-pZ-m4w" firstAttribute="leading" secondItem="CVn-a5-but" secondAttribute="leading" constant="16" id="HyA-ru-8F1"/>
-                            <constraint firstItem="ClH-hA-iWF" firstAttribute="top" secondItem="qVh-pZ-m4w" secondAttribute="bottom" constant="8" id="dPX-lb-irV"/>
-                            <constraint firstItem="CVn-a5-but" firstAttribute="trailing" secondItem="RyV-3W-sZt" secondAttribute="trailing" constant="16" id="eb2-dr-6US"/>
-                            <constraint firstItem="qVh-pZ-m4w" firstAttribute="top" secondItem="CVn-a5-but" secondAttribute="top" constant="32" id="jpE-Gx-2TL"/>
-                            <constraint firstItem="zaU-Ee-pV8" firstAttribute="leading" secondItem="ClH-hA-iWF" secondAttribute="leading" id="n3o-SE-m9G"/>
-                            <constraint firstItem="ClH-hA-iWF" firstAttribute="leading" secondItem="qVh-pZ-m4w" secondAttribute="leading" id="w6Y-n0-qKn"/>
-                            <constraint firstItem="CVn-a5-but" firstAttribute="trailing" secondItem="ClH-hA-iWF" secondAttribute="trailing" constant="16" id="yRE-To-Iy8"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="tab_profile_active" id="ZoO-3k-F93"/>
-                    <connections>
-                        <outlet property="avatarImage" destination="qVh-pZ-m4w" id="xlx-HG-zqC"/>
-                        <outlet property="descriptionLabel" destination="zaU-Ee-pV8" id="npM-ZV-9zS"/>
-                        <outlet property="loginNameLabel" destination="Zvy-Yp-y3m" id="z57-5d-y1N"/>
-                        <outlet property="logoutButton" destination="RyV-3W-sZt" id="f51-BK-L9j"/>
-                        <outlet property="nameLabel" destination="ClH-hA-iWF" id="XRU-fb-1KZ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="scl-5J-Y3q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -284,9 +220,7 @@
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
-        <image name="avatar" width="70" height="70"/>
         <image name="like_button_on" width="42" height="42"/>
-        <image name="logout_button" width="24" height="24"/>
         <image name="nav_back_button_white" width="24" height="24"/>
         <image name="share_button" width="50" height="50"/>
         <image name="tab_editorial_active" width="30" height="30"/>
@@ -296,9 +230,6 @@
         </namedColor>
         <namedColor name="YP Black">
             <color red="0.10199999809265137" green="0.10599999874830246" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="YP Gray">
-            <color red="0.68199998140335083" green="0.68599998950958252" blue="0.70599997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="YP White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
