@@ -84,6 +84,7 @@ final class ProfileViewController: UIViewController {
         
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(logoutButton)
+        logoutButton.tintColor = .red
         
         NSLayoutConstraint.activate([
             logoutButton.widthAnchor.constraint(equalToConstant: 44),
