@@ -109,18 +109,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bc-F1-9Eu" userLabel="Share Button">
+                                <rect key="frame" x="170" y="796" width="74" height="64"/>
+                                <buttonConfiguration key="configuration" style="plain" image="share_button"/>
+                                <connections>
+                                    <action selector="didTapShareButton:" destination="DId-NH-YrC" eventType="touchUpInside" id="udG-hf-30M"/>
+                                </connections>
+                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="5dB-cV-Fa1">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="7xw-tT-GUT" userLabel="Image View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="7xw-tT-GUT" userLabel="Image View">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="132"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="7xw-tT-GUT" firstAttribute="leading" secondItem="5dB-cV-Fa1" secondAttribute="leading" id="4cq-4G-pdD"/>
-                                    <constraint firstAttribute="bottom" secondItem="7xw-tT-GUT" secondAttribute="bottom" id="5Zn-NF-OGW"/>
-                                    <constraint firstAttribute="trailing" secondItem="7xw-tT-GUT" secondAttribute="trailing" id="CLE-fK-UxW"/>
-                                    <constraint firstItem="7xw-tT-GUT" firstAttribute="top" secondItem="5dB-cV-Fa1" secondAttribute="top" id="pZ0-aK-odR"/>
+                                    <constraint firstItem="7xw-tT-GUT" firstAttribute="top" secondItem="pfn-bx-YBy" secondAttribute="top" id="3JT-a0-z1V"/>
+                                    <constraint firstItem="7xw-tT-GUT" firstAttribute="leading" secondItem="pfn-bx-YBy" secondAttribute="leading" id="Lyu-5h-TJd"/>
+                                    <constraint firstItem="7xw-tT-GUT" firstAttribute="trailing" secondItem="sI2-uL-QqB" secondAttribute="trailing" id="udz-7b-7fb"/>
+                                    <constraint firstItem="7xw-tT-GUT" firstAttribute="bottom" secondItem="sI2-uL-QqB" secondAttribute="bottom" id="vl6-a9-neH"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="sI2-uL-QqB"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="pfn-bx-YBy"/>
@@ -128,13 +135,6 @@
                                     <outlet property="delegate" destination="DId-NH-YrC" id="hh7-Jt-vdW"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bc-F1-9Eu" userLabel="Share Button">
-                                <rect key="frame" x="182" y="810" width="50" height="50"/>
-                                <buttonConfiguration key="configuration" style="plain" image="share_button"/>
-                                <connections>
-                                    <action selector="didTapShareButton:" destination="DId-NH-YrC" eventType="touchUpInside" id="udG-hf-30M"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NAM-am-n3x">
                                 <rect key="frame" x="8" y="8" width="48" height="48"/>
                                 <constraints>
@@ -163,6 +163,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="X3A-DR-wYG"/>
                     <connections>
+                        <outlet property="imageConstraintBottom" destination="vl6-a9-neH" id="OvF-EK-faZ"/>
+                        <outlet property="imageConstraintLeft" destination="Lyu-5h-TJd" id="OCO-PL-dpa"/>
+                        <outlet property="imageConstraintRight" destination="udz-7b-7fb" id="idn-54-AV3"/>
+                        <outlet property="imageConstraintTop" destination="3JT-a0-z1V" id="stB-dE-h0e"/>
                         <outlet property="imageView" destination="7xw-tT-GUT" id="bXE-9o-5st"/>
                         <outlet property="scrollView" destination="5dB-cV-Fa1" id="W90-9f-UH8"/>
                     </connections>
