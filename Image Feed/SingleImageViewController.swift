@@ -1,24 +1,21 @@
 import UIKit
 
 final class SingleImageViewController: UIViewController {
-    var image: UIImage! {
-        didSet {
-            guard isViewLoaded else { return }
-            imageView.image = image
-            rescaleAndCenterImageInScrollView(image: image)
-        }
-    }
-    
-    @IBOutlet weak var scrollView: UIScrollView!
+
     @IBOutlet private var imageView: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var imageConstraintBottom: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintLeft: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintTop: NSLayoutConstraint!
     @IBOutlet weak var imageConstraintRight: NSLayoutConstraint!
     
-    @IBAction func didTapBackButton() {
-        dismiss(animated: true, completion: nil)
+    var image: UIImage! {
+        didSet {
+            guard isViewLoaded else { return }
+            imageView.image = image
+            rescaleAndCenterImageInScrollView(image: image)
+        }
     }
     
     override func viewDidLoad() {
@@ -28,6 +25,11 @@ final class SingleImageViewController: UIViewController {
         imageView.image = image
         rescaleAndCenterImageInScrollView(image: image)
     }
+    
+    @IBAction func didTapBackButton() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func didTapShareButton(_ sender: Any) {
         let share = UIActivityViewController(
             activityItems: [image],
@@ -45,7 +47,7 @@ final class SingleImageViewController: UIViewController {
         }
     }
     
-    func updateConstraints() {
+    private func updateConstraints() {
         if let image = imageView.image {
             let viewWidth = scrollView.bounds.size.width
             let viewHeight = scrollView.bounds.size.height
@@ -62,14 +64,14 @@ final class SingleImageViewController: UIViewController {
             view.layoutIfNeeded()
         }
     }
-    
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        updateConstraints()
-    }
 }
 
 extension SingleImageViewController: UIScrollViewDelegate {
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         imageView
+    }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        updateConstraints()
     }
 }
