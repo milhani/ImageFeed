@@ -99,7 +99,7 @@ final class ProfileViewController: UIViewController {
         
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(logoutButton)
-        logoutButton.tintColor = .red
+        logoutButton.tintColor = UIColor(named: "ypRed")
         
         return logoutButton
     }
@@ -111,7 +111,7 @@ final class ProfileViewController: UIViewController {
                 v.removeFromSuperview()
             } else if let v = v as? UIImageView {
                 v.image = UIImage(systemName: "person.crop.circle.fill")
-                v.tintColor = .gray
+                v.tintColor = UIColor(named: "ypGray")
                 v.widthAnchor.constraint(equalToConstant: 70).isActive = true
                 v.heightAnchor.constraint(equalToConstant: 70).isActive = true
             }

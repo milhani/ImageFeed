@@ -12,6 +12,8 @@ final class OAuth2Service {
         }
     }
     
+    private init() {} 
+    
     private func authTokenRequest(code: String) -> URLRequest? {
         guard let url = URL(string: "https://unsplash.com") else { return nil }
         return URLRequest.makeHTTPRequest(
@@ -57,35 +59,3 @@ final class OAuth2Service {
     }
 }
 
-extension OAuth2Service {
-    
-    private struct OAuthTokenResponseBody: Decodable {
-        let accessToken: String
-        let tokenType: String
-        let scope: String
-        let createdAt: Int
-        
-        enum CodingKeys: String, CodingKey {
-            case accessToken = "access_token"
-            case tokenType = "token_type"
-            case scope
-            case createdAt = "created_at"
-        }
-    }
-}
-
-extension URLRequest {
-    static func makeHTTPRequest(
-        path: String,
-        httpMethod: String,
-        baseURL: URL = DefaultBaseURL
-    ) -> URLRequest? {
-        guard let url = URL(string: path, relativeTo: baseURL)
-        else {
-            return nil
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = httpMethod
-        return request
-    }
-}
