@@ -97,9 +97,9 @@ final class ProfileViewController: UIViewController {
             action: #selector(Self.didTapLogoutButton)
         )
         
+        logoutButton.tintColor = UIColor(named: "ypRed")
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(logoutButton)
-        logoutButton.tintColor = UIColor(named: "ypRed")
         
         return logoutButton
     }
