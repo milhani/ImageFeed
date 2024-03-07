@@ -17,6 +17,9 @@ final class WebViewViewController: UIViewController {
     
     weak var delegate: WebViewViewControllerDelegate?
     
+    @IBAction func didTapBackButton(_ sender: Any) {
+        delegate?.webViewViewControllerDidCancel(self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         loadAuthView()
