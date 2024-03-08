@@ -58,7 +58,7 @@ final class ProfileViewController: UIViewController {
         let nameLabel = UILabel()
         nameLabel.text = "Екатерина Новикова"
         nameLabel.font = UIFont.systemFont(ofSize: 23, weight: UIFont.Weight.bold)
-        nameLabel.textColor = UIColor(named: "YP White")
+        nameLabel.textColor = .ypWhite
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(nameLabel)
@@ -73,7 +73,7 @@ final class ProfileViewController: UIViewController {
         loginNameLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(loginNameLabel)
         loginNameLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
-        loginNameLabel.textColor = UIColor(named: "YP Gray")
+        loginNameLabel.textColor = .ypGray
         
         return loginNameLabel
     }
@@ -82,7 +82,7 @@ final class ProfileViewController: UIViewController {
         let descriptionLabel = UILabel()
         descriptionLabel.text = "Hello, World!"
         descriptionLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
-        descriptionLabel.textColor = UIColor(named: "YP White")
+        descriptionLabel.textColor = .ypWhite
         
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(descriptionLabel)
@@ -97,9 +97,9 @@ final class ProfileViewController: UIViewController {
             action: #selector(Self.didTapLogoutButton)
         )
         
+        logoutButton.tintColor = .ypRed
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(logoutButton)
-        logoutButton.tintColor = .red
         
         return logoutButton
     }
@@ -111,7 +111,7 @@ final class ProfileViewController: UIViewController {
                 v.removeFromSuperview()
             } else if let v = v as? UIImageView {
                 v.image = UIImage(systemName: "person.crop.circle.fill")
-                v.tintColor = .gray
+                v.tintColor = .ypGray
                 v.widthAnchor.constraint(equalToConstant: 70).isActive = true
                 v.heightAnchor.constraint(equalToConstant: 70).isActive = true
             }
