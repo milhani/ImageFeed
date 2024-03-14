@@ -29,6 +29,7 @@
 		BADBEF5A2BA37683000ADA48 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADBEF592BA37683000ADA48 /* UIBlockingProgressHUD.swift */; };
 		BADBEF5D2BA37719000ADA48 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BADBEF5C2BA37719000ADA48 /* ProgressHUD */; };
 		BADBEF602BA37CE6000ADA48 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADBEF5F2BA37CE6000ADA48 /* ProfileService.swift */; };
+		BADBEF622BA37DE9000ADA48 /* ProfileResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADBEF612BA37DE9000ADA48 /* ProfileResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		BAB8C53B2B76BF0A00D8C4CC /* OAuth2Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2Service.swift; sourceTree = "<group>"; };
 		BADBEF592BA37683000ADA48 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		BADBEF5F2BA37CE6000ADA48 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
+		BADBEF612BA37DE9000ADA48 /* ProfileResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 			children = (
 				BA2452112B6D3EA60098F4EF /* ProfileViewController.swift */,
 				BADBEF5F2BA37CE6000ADA48 /* ProfileService.swift */,
+				BADBEF612BA37DE9000ADA48 /* ProfileResult.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			files = (
 				7D9CFA4328DDEE7F00D971A7 /* AppDelegate.swift in Sources */,
 				7D9CFA4528DDEE7F00D971A7 /* SceneDelegate.swift in Sources */,
+				BADBEF622BA37DE9000ADA48 /* ProfileResult.swift in Sources */,
 				BAB8C53A2B76BD2700D8C4CC /* OAuth2TokenStorage.swift in Sources */,
 				BA3CD35A2B97CC5000CFC5B9 /* UIColor+Extensions.swift in Sources */,
 				BA2452122B6D3EA60098F4EF /* ProfileViewController.swift in Sources */,
