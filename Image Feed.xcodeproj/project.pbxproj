@@ -88,11 +88,11 @@
 		7D9CFA4128DDEE7F00D971A7 /* Image Feed */ = {
 			isa = PBXGroup;
 			children = (
-				BADBEF5E2BA37CC3000ADA48 /* Profile */,
 				BA3CD35F2B9A2D7900CFC5B9 /* Extensions */,
 				BA3CD3582B97CC3800CFC5B9 /* Helpers */,
 				BAB8C5362B75119F00D8C4CC /* Auth */,
 				7D9CFA5A28DDF66900D971A7 /* ImagesList */,
+				BADBEF5E2BA37CC3000ADA48 /* Profile */,
 				BA2452132B6D60770098F4EF /* SingleImageViewController.swift */,
 				BA3CD35B2B98F6F500CFC5B9 /* SplashViewController.swift */,
 				7D9CFA4228DDEE7F00D971A7 /* AppDelegate.swift */,
@@ -118,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				BAB8C5322B74F12B00D8C4CC /* Constants.swift */,
-				BA3CD3562B97C45500CFC5B9 /* URLSession+data.swift */,
 				BADBEF592BA37683000ADA48 /* UIBlockingProgressHUD.swift */,
 			);
 			path = Helpers;
@@ -129,6 +128,7 @@
 			children = (
 				BA3CD3592B97CC5000CFC5B9 /* UIColor+Extensions.swift */,
 				BA3CD3602B9A2D9C00CFC5B9 /* URLRequest+Extensions.swift */,
+				BA3CD3562B97C45500CFC5B9 /* URLSession+data.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
