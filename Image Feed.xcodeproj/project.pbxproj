@@ -26,6 +26,8 @@
 		BAB8C5382B756C9600D8C4CC /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB8C5372B756C9600D8C4CC /* WebViewViewController.swift */; };
 		BAB8C53A2B76BD2700D8C4CC /* OAuth2TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB8C5392B76BD2700D8C4CC /* OAuth2TokenStorage.swift */; };
 		BAB8C53C2B76BF0A00D8C4CC /* OAuth2Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB8C53B2B76BF0A00D8C4CC /* OAuth2Service.swift */; };
+		BADBEF5A2BA37683000ADA48 /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADBEF592BA37683000ADA48 /* UIBlockingProgressHUD.swift */; };
+		BADBEF5D2BA37719000ADA48 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BADBEF5C2BA37719000ADA48 /* ProgressHUD */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,7 @@
 		BAB8C5372B756C9600D8C4CC /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
 		BAB8C5392B76BD2700D8C4CC /* OAuth2TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2TokenStorage.swift; sourceTree = "<group>"; };
 		BAB8C53B2B76BF0A00D8C4CC /* OAuth2Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2Service.swift; sourceTree = "<group>"; };
+		BADBEF592BA37683000ADA48 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BADBEF5D2BA37719000ADA48 /* ProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +117,7 @@
 			children = (
 				BAB8C5322B74F12B00D8C4CC /* Constants.swift */,
 				BA3CD3562B97C45500CFC5B9 /* URLSession+data.swift */,
+				BADBEF592BA37683000ADA48 /* UIBlockingProgressHUD.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -154,6 +159,9 @@
 			dependencies = (
 			);
 			name = "Image Feed";
+			packageProductDependencies = (
+				BADBEF5C2BA37719000ADA48 /* ProgressHUD */,
+			);
 			productName = "Image Feed";
 			productReference = 7D9CFA3F28DDEE7F00D971A7 /* Image Feed.app */;
 			productType = "com.apple.product-type.application";
@@ -182,6 +190,9 @@
 				Base,
 			);
 			mainGroup = 7D9CFA3628DDEE7F00D971A7;
+			packageReferences = (
+				BADBEF5B2BA37719000ADA48 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
+			);
 			productRefGroup = 7D9CFA4028DDEE7F00D971A7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -225,6 +236,7 @@
 				BA3CD3612B9A2D9C00CFC5B9 /* URLRequest+Extensions.swift in Sources */,
 				7D3DFB1528DDF696005A13F3 /* ImagesListCell.swift in Sources */,
 				BA3CD35E2B9A2D3900CFC5B9 /* OAuthTokenResponseBody.swift in Sources */,
+				BADBEF5A2BA37683000ADA48 /* UIBlockingProgressHUD.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +456,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BADBEF5B2BA37719000ADA48 /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BADBEF5C2BA37719000ADA48 /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BADBEF5B2BA37719000ADA48 /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7D9CFA3728DDEE7F00D971A7 /* Project object */;
 }

@@ -1,8 +1,16 @@
 import Foundation
 
+enum AuthServiceError: Error {
+    case invalidRequest
+}
+
 final class OAuth2Service {
     static let shared = OAuth2Service()
     public let urlSession = URLSession.shared
+    
+    private var task: URLSessionTask?
+    private var lastCode: String?
+    
     private (set) var authToken: String? {
         get {
             return OAuth2TokenStorage().token
@@ -28,34 +36,34 @@ final class OAuth2Service {
     }
     
     func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
-        guard let request = authTokenRequest(code: code) else { return }
+        assert(Thread.isMainThread)
+        guard lastCode != code else {
+            completion(.failure(AuthServiceError.invalidRequest))
+            return
+        }
+
+        task?.cancel()
+        lastCode = code
         
-        let task = object(for: request) { [weak self] result in
-                        guard let self = self else { return }
-                        switch result {
-                        case .success(let body):
-                            let authToken = body.accessToken
-                            self.authToken = authToken
-                            completion(.success(authToken))
-                        case .failure(let error):
-                            completion(.failure(error))
-                        }
-                    }
-        task.resume()
-    }
-    
-    private func object(for request: URLRequest,
-                        completion: @escaping (Result<OAuthTokenResponseBody, Error>) -> Void) -> URLSessionTask {
-        let decoder = JSONDecoder()
+        guard let request = authTokenRequest(code: code) else {
+            completion(.failure(AuthServiceError.invalidRequest))
+            return
+        }
         
-        return urlSession.data(for: request) { (result: Result<Data, Error>) in
-            let response = result.flatMap { data -> Result<OAuthTokenResponseBody, Error> in
-                Result {
-                    try decoder.decode(OAuthTokenResponseBody.self, from: data)
+        _ = urlSession.objectTask(for: request) { [weak self]
+            (result: Result<OAuthTokenResponseBody, Error>) in
+                guard let self = self else { return }
+                self.task = nil
+                switch result {
+                case .success(let body):
+                    let authToken = body.accessToken
+                    self.authToken = authToken
+                    completion(.success(authToken))
+                case .failure(let error):
+                    self.lastCode = nil
+                    completion(.failure(error))
                 }
             }
-            completion(response)
         }
-    }
 }
 
