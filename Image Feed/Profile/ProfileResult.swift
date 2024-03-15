@@ -15,14 +15,14 @@ struct ProfileResult: Codable {
 }
 
 struct Profile {
-    let userName: String
+    let username: String
     let name: String
     let loginName: String
     let bio: String?
 }
 
 struct UserResult: Codable {
-    var profile_image: ImageURL?
+    var profileImage: ImageURL?
 }
 
 struct ImageURL: Codable {

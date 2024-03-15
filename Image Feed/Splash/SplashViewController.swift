@@ -68,7 +68,7 @@ final class SplashViewController: UIViewController {
             
             switch result {
             case .success(let user):
-                ProfileImageService.shared.fetchProfileImageURL(username: user.userName) { _ in }
+                ProfileImageService.shared.fetchProfileImageURL(username: user.username, token: token) { _ in }
                 self.switchToTabBarController()
             case .failure:
                 break
