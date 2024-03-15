@@ -103,10 +103,10 @@
 				BAB8C5362B75119F00D8C4CC /* Auth */,
 				7D9CFA5A28DDF66900D971A7 /* ImagesList */,
 				BADBEF5E2BA37CC3000ADA48 /* Profile */,
-				BA2452132B6D60770098F4EF /* SingleImageViewController.swift */,
-				BA3CD35B2B98F6F500CFC5B9 /* SplashViewController.swift */,
-				BADBEF6B2BA4D144000ADA48 /* TabBarController.swift */,
+				BADBEF6D2BA4D38E000ADA48 /* Splash */,
+				BADBEF6E2BA4D3A5000ADA48 /* TabBar */,
 				7D9CFA4228DDEE7F00D971A7 /* AppDelegate.swift */,
+				BA2452132B6D60770098F4EF /* SingleImageViewController.swift */,
 				7D9CFA4428DDEE7F00D971A7 /* SceneDelegate.swift */,
 				7D9CFA4828DDEE7F00D971A7 /* Main.storyboard */,
 				7D9CFA4B28DDEE8000D971A7 /* Assets.xcassets */,
@@ -165,6 +165,22 @@
 				BADBEF632BA3916A000ADA48 /* ProfileImageService.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		BADBEF6D2BA4D38E000ADA48 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				BA3CD35B2B98F6F500CFC5B9 /* SplashViewController.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		BADBEF6E2BA4D3A5000ADA48 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				BADBEF6B2BA4D144000ADA48 /* TabBarController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
