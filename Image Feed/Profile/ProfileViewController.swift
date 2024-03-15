@@ -1,12 +1,13 @@
+import Kingfisher
 import UIKit
 
 final class ProfileViewController: UIViewController {
     
-    private var avatarImage: UIImageView!
-    private var nameLabel: UILabel!
-    private var loginNameLabel: UILabel!
-    private var descriptionLabel: UILabel!
-    private var logoutButton: UIButton!
+    private var avatarImage = UIImageView()
+    private var nameLabel = UILabel()
+    private var loginNameLabel = UILabel()
+    private var descriptionLabel = UILabel()
+    private var logoutButton = UIButton()
     
     private let profileService = ProfileService.shared
     private var profileImageServiceObserver: NSObjectProtocol?
@@ -27,11 +28,13 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.avatarImage = createAvatarImage()
-        self.nameLabel = createNameLabel()
-        self.loginNameLabel = createLoginNameLabel()
-        self.descriptionLabel = createDescriptionLabel()
-        self.logoutButton = creatLogoutButton()
+        
+        createAvatarImage()
+        createNameLabel()
+        createLoginNameLabel()
+        createDescriptionLabel()
+        creatLogoutButton()
+        
         createConstraint()
         
         guard let profile = profileService.profile else { return }
@@ -39,8 +42,7 @@ final class ProfileViewController: UIViewController {
         
         if let avatarURL = ProfileImageService.shared.avatarURL,
            let url = URL(string: avatarURL) {
-            // TODO [Sprint 11]  Обновите аватар, если нотификация
-            // была опубликована до того, как мы подписались.
+            updateAvatar()
         }
         
         profileImageServiceObserver = NotificationCenter.default    // 2
@@ -52,7 +54,7 @@ final class ProfileViewController: UIViewController {
                 guard let self = self else { return }
                 self.updateAvatar()                                 // 6
             }
-        updateAvatar()
+        
     }
     
     private func createConstraint() {
@@ -79,56 +81,45 @@ final class ProfileViewController: UIViewController {
         
     }
     
-    private func createAvatarImage() -> UIImageView {
+    private func createAvatarImage() {
         let profileImage = UIImage(named: "avatar")
-        let avatarImage = UIImageView(image: profileImage)
+        avatarImage = UIImageView(image: profileImage)
         avatarImage.layer.masksToBounds = true
         avatarImage.layer.cornerRadius = 35
         
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(avatarImage)
-        
-        return avatarImage
     }
     
-    private func createNameLabel() -> UILabel {
-        let nameLabel = UILabel()
+    private func createNameLabel() {
         nameLabel.text = "Екатерина Новикова"
         nameLabel.font = UIFont.systemFont(ofSize: 23, weight: UIFont.Weight.bold)
         nameLabel.textColor = .ypWhite
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(nameLabel)
-        
-        return nameLabel
     }
     
-    private func createLoginNameLabel() -> UILabel {
-        let loginNameLabel = UILabel()
+    private func createLoginNameLabel() {
         loginNameLabel.text = "@ekaterina_nov"
-        
-        loginNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(loginNameLabel)
         loginNameLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
         loginNameLabel.textColor = .ypGray
         
-        return loginNameLabel
+        loginNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(loginNameLabel)
     }
     
-    private func createDescriptionLabel() -> UILabel {
-        let descriptionLabel = UILabel()
+    private func createDescriptionLabel() {
         descriptionLabel.text = "Hello, World!"
         descriptionLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
         descriptionLabel.textColor = .ypWhite
         
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(descriptionLabel)
-        
-        return descriptionLabel
     }
     
-    private func creatLogoutButton() -> UIButton {
-        let logoutButton = UIButton.systemButton(
+    private func creatLogoutButton() {
+        logoutButton = UIButton.systemButton(
             with: (UIImage(named: "logout_button") ?? UIImage(systemName: "person.crop.circle.fill"))!,
             target: self,
             action: #selector(Self.didTapLogoutButton)
@@ -137,8 +128,6 @@ final class ProfileViewController: UIViewController {
         logoutButton.tintColor = .ypRed
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(logoutButton)
-        
-        return logoutButton
     }
     
     private func updateProfileDetails(profile: Profile) {
@@ -180,6 +169,21 @@ final class ProfileViewController: UIViewController {
         else { return }
         
         // TODO [Sprint 11] Обновите аватар, используя Kingfisher
+        let processor = RoundCornerImageProcessor(cornerRadius: 35, backgroundColor: .clear)
+        avatarImage.kf.indicatorType = .activity
+        avatarImage.kf.setImage(with: url,
+                                          placeholder: UIImage(systemName: "person.crop.circle.fill"),
+                                          options: [.processor(processor),
+                                                    .cacheSerializer(FormatIndicatedCacheSerializer.png)]) {result in
+                                                        switch result {
+                                                        case.success(let value):
+                                                            print(value.image)
+                                                            print(value.cacheType)
+                                                            print(value.source)
+                                                        case .failure(let error):
+                                                            print(error)
+                                                        }
+                                                    }
     }
     
     @objc

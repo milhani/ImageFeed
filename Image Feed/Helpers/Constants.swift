@@ -7,3 +7,8 @@ enum Constants {
     static let accessScope = "public+read_user+write_likes"
     static let defaultBaseURL = URL(string: "https://api.unsplash.com")!
 }
+
+// iamstar2018@bk.ru
+// 3@dfkpk9!MTJQ6k
+
+
