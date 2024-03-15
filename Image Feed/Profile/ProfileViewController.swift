@@ -8,6 +8,23 @@ final class ProfileViewController: UIViewController {
     private var descriptionLabel: UILabel!
     private var logoutButton: UIButton!
     
+    private let profileService = ProfileService.shared
+    private var profileImageServiceObserver: NSObjectProtocol?
+    
+    override init(nibName: String?, bundle: Bundle?) {
+        super.init(nibName: nibName, bundle: bundle)
+        addObserver()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        addObserver()
+    }
+    
+    deinit {
+        removeObserver()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.avatarImage = createAvatarImage()
@@ -16,6 +33,26 @@ final class ProfileViewController: UIViewController {
         self.descriptionLabel = createDescriptionLabel()
         self.logoutButton = creatLogoutButton()
         createConstraint()
+        
+        guard let profile = profileService.profile else { return }
+        updateProfileDetails(profile: profile)
+        
+        if let avatarURL = ProfileImageService.shared.avatarURL,
+           let url = URL(string: avatarURL) {
+            // TODO [Sprint 11]  Обновите аватар, если нотификация
+            // была опубликована до того, как мы подписались.
+        }
+        
+        profileImageServiceObserver = NotificationCenter.default    // 2
+            .addObserver(
+                forName: ProfileImageService.didChangeNotification, // 3
+                object: nil,                                        // 4
+                queue: .main                                        // 5
+            ) { [weak self] _ in
+                guard let self = self else { return }
+                self.updateAvatar()                                 // 6
+            }
+        updateAvatar()
     }
     
     private func createConstraint() {
@@ -102,6 +139,47 @@ final class ProfileViewController: UIViewController {
         view.addSubview(logoutButton)
         
         return logoutButton
+    }
+    
+    private func updateProfileDetails(profile: Profile) {
+        self.nameLabel.text = profile.name
+        self.loginNameLabel.text = profile.userName
+        self.descriptionLabel.text = profile.bio
+    }
+    
+    private func addObserver() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateAvatar(notification:)),
+            name: ProfileImageService.didChangeNotification,
+            object: nil)
+    }
+   
+   private func removeObserver() {
+        NotificationCenter.default.removeObserver(
+            self,
+            name: ProfileImageService.didChangeNotification,
+            object: nil)
+    }
+    
+    private func updateAvatar() {                                   // 8
+        guard
+            let profileImageURL = ProfileImageService.shared.avatarURL,
+            let url = URL(string: profileImageURL)
+        else { return }
+        // TODO [Sprint 11] Обновитt аватар, используя Kingfisher
+    }
+    
+    @objc
+    private func updateAvatar(notification: Notification) {
+        guard
+            isViewLoaded,
+            let userInfo = notification.userInfo,
+            let profileImageURL = userInfo["URL"] as? String,
+            let url = URL(string: profileImageURL)
+        else { return }
+        
+        // TODO [Sprint 11] Обновите аватар, используя Kingfisher
     }
     
     @objc

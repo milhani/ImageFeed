@@ -30,6 +30,7 @@
 		BADBEF5D2BA37719000ADA48 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BADBEF5C2BA37719000ADA48 /* ProgressHUD */; };
 		BADBEF602BA37CE6000ADA48 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADBEF5F2BA37CE6000ADA48 /* ProfileService.swift */; };
 		BADBEF622BA37DE9000ADA48 /* ProfileResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADBEF612BA37DE9000ADA48 /* ProfileResult.swift */; };
+		BADBEF642BA3916A000ADA48 /* ProfileImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADBEF632BA3916A000ADA48 /* ProfileImageService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		BADBEF592BA37683000ADA48 /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		BADBEF5F2BA37CE6000ADA48 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		BADBEF612BA37DE9000ADA48 /* ProfileResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResult.swift; sourceTree = "<group>"; };
+		BADBEF632BA3916A000ADA48 /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				BA2452112B6D3EA60098F4EF /* ProfileViewController.swift */,
 				BADBEF5F2BA37CE6000ADA48 /* ProfileService.swift */,
 				BADBEF612BA37DE9000ADA48 /* ProfileResult.swift */,
+				BADBEF632BA3916A000ADA48 /* ProfileImageService.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				BAB8C5382B756C9600D8C4CC /* WebViewViewController.swift in Sources */,
 				BA3CD3612B9A2D9C00CFC5B9 /* URLRequest+Extensions.swift in Sources */,
 				7D3DFB1528DDF696005A13F3 /* ImagesListCell.swift in Sources */,
+				BADBEF642BA3916A000ADA48 /* ProfileImageService.swift in Sources */,
 				BA3CD35E2B9A2D3900CFC5B9 /* OAuthTokenResponseBody.swift in Sources */,
 				BADBEF5A2BA37683000ADA48 /* UIBlockingProgressHUD.swift in Sources */,
 			);
