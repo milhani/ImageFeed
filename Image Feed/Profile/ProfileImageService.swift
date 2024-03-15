@@ -16,6 +16,7 @@ final class ProfileImageService {
         guard var request = URLRequest.makeHTTPRequest(path: "/users/\(username)", httpMethod: "GET", baseURL: url)
         else { return }
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        print(request)
         
         assert(Thread.isMainThread)
         task?.cancel()
@@ -23,10 +24,12 @@ final class ProfileImageService {
         task = urlSession.objectTask(for: request) { [weak self] (response: Result<UserResult, Error>)  in
             guard let self else { return }
             self.task = nil
+            print("STEP 1")
             switch response {
             case .success(let profileResult):
                 guard let mediumImage = profileResult.profileImage?.medium else { return }
                 self.avatarURL = mediumImage
+                print("GOOD")
                 completion(.success(mediumImage))
                 
                 NotificationCenter.default.post(

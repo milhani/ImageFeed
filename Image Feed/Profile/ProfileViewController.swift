@@ -42,7 +42,8 @@ final class ProfileViewController: UIViewController {
         
         if let avatarURL = ProfileImageService.shared.avatarURL,
            let url = URL(string: avatarURL) {
-            updateAvatar()
+            print(avatarURL)
+            updateAvatar(url: url)
         }
         
         profileImageServiceObserver = NotificationCenter.default
@@ -50,9 +51,9 @@ final class ProfileViewController: UIViewController {
                 forName: ProfileImageService.didChangeNotification,
                 object: nil,
                 queue: .main
-            ) { [weak self] _ in
+            ) { [weak self] notification in
                 guard let self = self else { return }
-                self.updateAvatar()
+                self.updateAvatar(notification: notification)
             }
         
     }
@@ -151,11 +152,7 @@ final class ProfileViewController: UIViewController {
             object: nil)
     }
     
-    private func updateAvatar() {
-        guard
-            let profileImageURL = ProfileImageService.shared.avatarURL,
-            let url = URL(string: profileImageURL)
-        else { return }
+    private func updateAvatar(url: URL) {
         avatarImage.kf.indicatorType = .activity
         let processor = RoundCornerImageProcessor(cornerRadius: 35)
         avatarImage.kf.setImage(with: url, options: [.processor(processor)])
