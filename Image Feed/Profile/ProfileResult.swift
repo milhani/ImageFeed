@@ -22,7 +22,7 @@ struct Profile {
 }
 
 struct UserResult: Codable {
-    var profileImage: ImageURL?
+    var profile_image: ImageURL?
 }
 
 struct ImageURL: Codable {

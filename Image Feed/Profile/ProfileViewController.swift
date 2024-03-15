@@ -42,7 +42,6 @@ final class ProfileViewController: UIViewController {
         
         if let avatarURL = ProfileImageService.shared.avatarURL,
            let url = URL(string: avatarURL) {
-            print(avatarURL)
             updateAvatar(url: url)
         }
         

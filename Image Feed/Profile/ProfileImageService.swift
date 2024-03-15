@@ -15,23 +15,20 @@ final class ProfileImageService {
         guard let url = URL(string: "https://api.unsplash.com") else { return }
         guard var request = URLRequest.makeHTTPRequest(path: "/users/\(username)", httpMethod: "GET", baseURL: url)
         else { return }
+    
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        print(request)
         
         assert(Thread.isMainThread)
         task?.cancel()
-        
+
         task = urlSession.objectTask(for: request) { [weak self] (response: Result<UserResult, Error>)  in
             guard let self else { return }
             self.task = nil
-            print("STEP 1")
             switch response {
             case .success(let profileResult):
-                guard let mediumImage = profileResult.profileImage?.medium else { return }
+                guard let mediumImage = profileResult.profile_image?.medium else { return }
                 self.avatarURL = mediumImage
-                print("GOOD")
                 completion(.success(mediumImage))
-                
                 NotificationCenter.default.post(
                         name: ProfileImageService.didChangeNotification,
                         object: self,
