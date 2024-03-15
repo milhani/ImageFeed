@@ -1,5 +1,3 @@
-import Foundation
-
 import UIKit
  
 final class TabBarController: UITabBarController {
@@ -16,5 +14,3 @@ final class TabBarController: UITabBarController {
         self.viewControllers = [imagesListViewController, profileViewController]
     }
 }
-
-

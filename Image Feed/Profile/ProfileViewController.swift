@@ -45,14 +45,14 @@ final class ProfileViewController: UIViewController {
             updateAvatar()
         }
         
-        profileImageServiceObserver = NotificationCenter.default    // 2
+        profileImageServiceObserver = NotificationCenter.default
             .addObserver(
-                forName: ProfileImageService.didChangeNotification, // 3
-                object: nil,                                        // 4
-                queue: .main                                        // 5
+                forName: ProfileImageService.didChangeNotification,
+                object: nil,
+                queue: .main
             ) { [weak self] _ in
                 guard let self = self else { return }
-                self.updateAvatar()                                 // 6
+                self.updateAvatar()
             }
         
     }
@@ -151,12 +151,14 @@ final class ProfileViewController: UIViewController {
             object: nil)
     }
     
-    private func updateAvatar() {                                   // 8
+    private func updateAvatar() {
         guard
             let profileImageURL = ProfileImageService.shared.avatarURL,
             let url = URL(string: profileImageURL)
         else { return }
-        // TODO [Sprint 11] Обновитt аватар, используя Kingfisher
+        avatarImage.kf.indicatorType = .activity
+        let processor = RoundCornerImageProcessor(cornerRadius: 35)
+        avatarImage.kf.setImage(with: url, options: [.processor(processor)])
     }
     
     @objc
@@ -167,8 +169,6 @@ final class ProfileViewController: UIViewController {
             let profileImageURL = userInfo["URL"] as? String,
             let url = URL(string: profileImageURL)
         else { return }
-        
-        // TODO [Sprint 11] Обновите аватар, используя Kingfisher
         let processor = RoundCornerImageProcessor(cornerRadius: 35, backgroundColor: .clear)
         avatarImage.kf.indicatorType = .activity
         avatarImage.kf.setImage(with: url,
