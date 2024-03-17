@@ -8,7 +8,3 @@ enum Constants {
     static let defaultBaseURL = URL(string: "https://api.unsplash.com")!
 }
 
-// iamstar2018@bk.ru
-// 3@dfkpk9!MTJQ6k
-
-

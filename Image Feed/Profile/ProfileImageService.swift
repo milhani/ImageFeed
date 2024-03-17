@@ -12,8 +12,9 @@ final class ProfileImageService {
     private init() {}
     
     func fetchProfileImageURL(username: String, token: String, _ completion: @escaping (Result<String, Error>) -> Void) {
-        guard let url = URL(string: "https://api.unsplash.com") else { return }
-        guard var request = URLRequest.makeHTTPRequest(path: "/users/\(username)", httpMethod: "GET", baseURL: url)
+        
+        guard let url = URL(string: "https://api.unsplash.com"),
+              var request = URLRequest.makeHTTPRequest(path: "/users/\(username)", httpMethod: "GET", baseURL: url)
         else { return }
     
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")

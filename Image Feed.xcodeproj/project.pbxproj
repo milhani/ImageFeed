@@ -34,6 +34,7 @@
 		BADBEF672BA459CF000ADA48 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BADBEF662BA459CF000ADA48 /* Kingfisher */; };
 		BADBEF6A2BA4AAF6000ADA48 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = BADBEF692BA4AAF6000ADA48 /* SwiftKeychainWrapper */; };
 		BADBEF6C2BA4D144000ADA48 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADBEF6B2BA4D144000ADA48 /* TabBarController.swift */; };
+		BADBEF702BA759BD000ADA48 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADBEF6F2BA759BD000ADA48 /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		BADBEF612BA37DE9000ADA48 /* ProfileResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResult.swift; sourceTree = "<group>"; };
 		BADBEF632BA3916A000ADA48 /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
 		BADBEF6B2BA4D144000ADA48 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		BADBEF6F2BA759BD000ADA48 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			children = (
 				BAB8C5322B74F12B00D8C4CC /* Constants.swift */,
 				BADBEF592BA37683000ADA48 /* UIBlockingProgressHUD.swift */,
+				BADBEF6F2BA759BD000ADA48 /* NetworkError.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				BA3CD35C2B98F6F500CFC5B9 /* SplashViewController.swift in Sources */,
 				BAB8C53C2B76BF0A00D8C4CC /* OAuth2Service.swift in Sources */,
 				7D3DFB1628DDF696005A13F3 /* ImagesListViewController.swift in Sources */,
+				BADBEF702BA759BD000ADA48 /* NetworkError.swift in Sources */,
 				BAB8C5352B750D6E00D8C4CC /* AuthViewController.swift in Sources */,
 				BAB8C5332B74F12B00D8C4CC /* Constants.swift in Sources */,
 				BA3CD3572B97C45500CFC5B9 /* URLSession+data.swift in Sources */,
