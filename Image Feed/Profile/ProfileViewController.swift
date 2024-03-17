@@ -35,6 +35,15 @@ final class ProfileViewController: UIViewController {
         createDescriptionLabel()
         creatLogoutButton()
         
+        [avatarImage,
+         nameLabel,
+         loginNameLabel,
+         descriptionLabel,
+         logoutButton].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+             view.addSubview($0)
+        }
+        
         createConstraint()
         
         guard let profile = profileService.profile else { return }
@@ -86,36 +95,24 @@ final class ProfileViewController: UIViewController {
         avatarImage = UIImageView(image: profileImage)
         avatarImage.layer.masksToBounds = true
         avatarImage.layer.cornerRadius = 35
-        
-        avatarImage.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(avatarImage)
     }
     
     private func createNameLabel() {
         nameLabel.text = "Екатерина Новикова"
         nameLabel.font = UIFont.systemFont(ofSize: 23, weight: UIFont.Weight.bold)
         nameLabel.textColor = .ypWhite
-        
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(nameLabel)
     }
     
     private func createLoginNameLabel() {
         loginNameLabel.text = "@ekaterina_nov"
         loginNameLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
         loginNameLabel.textColor = .ypGray
-        
-        loginNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(loginNameLabel)
     }
     
     private func createDescriptionLabel() {
         descriptionLabel.text = "Hello, World!"
         descriptionLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.regular)
         descriptionLabel.textColor = .ypWhite
-        
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(descriptionLabel)
     }
     
     private func creatLogoutButton() {
@@ -124,10 +121,7 @@ final class ProfileViewController: UIViewController {
             target: self,
             action: #selector(Self.didTapLogoutButton)
         )
-        
         logoutButton.tintColor = .ypRed
-        logoutButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(logoutButton)
     }
     
     private func updateProfileDetails(profile: Profile) {
@@ -167,31 +161,35 @@ final class ProfileViewController: UIViewController {
         else { return }
         let processor = RoundCornerImageProcessor(cornerRadius: 35, backgroundColor: .clear)
         avatarImage.kf.indicatorType = .activity
-        avatarImage.kf.setImage(with: url,
-                                          placeholder: UIImage(systemName: "person.crop.circle.fill"),
-                                          options: [.processor(processor),
-                                                    .cacheSerializer(FormatIndicatedCacheSerializer.png)]) {result in
-                                                        switch result {
-                                                        case.success(let value):
-                                                            print(value.image)
-                                                            print(value.cacheType)
-                                                            print(value.source)
-                                                        case .failure(let error):
-                                                            print(error)
-                                                        }
-                                                    }
+        avatarImage.kf.setImage(
+            with: url,
+            placeholder: UIImage(systemName: "person.crop.circle.fill"),
+            options: [
+                .processor(processor),
+                .cacheSerializer(FormatIndicatedCacheSerializer.png)
+            ]
+        ) { result in
+            switch result {
+                case.success(let value):
+                    print(value.image)
+                    print(value.cacheType)
+                    print(value.source)
+                case .failure(let error):
+                    print(error)
+            }
+        }
     }
     
     @objc
     private func didTapLogoutButton() {
-        for v in view.subviews {
-            if let v = v as? UILabel {
-                v.removeFromSuperview()
-            } else if let v = v as? UIImageView {
-                v.image = UIImage(systemName: "person.crop.circle.fill")
-                v.tintColor = .ypGray
-                v.widthAnchor.constraint(equalToConstant: 70).isActive = true
-                v.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        for view in view.subviews {
+            if let view = view as? UILabel {
+                view.removeFromSuperview()
+            } else if let view = view as? UIImageView {
+                view.image = UIImage(systemName: "person.crop.circle.fill")
+                view.tintColor = .ypGray
+                view.widthAnchor.constraint(equalToConstant: 70).isActive = true
+                view.heightAnchor.constraint(equalToConstant: 70).isActive = true
             }
         }
     }
