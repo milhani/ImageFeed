@@ -14,19 +14,3 @@ struct ProfileResult: Codable {
     }
 }
 
-struct Profile {
-    let username: String
-    let name: String
-    let loginName: String
-    let bio: String?
-}
-
-struct UserResult: Codable {
-    var profile_image: ImageURL?
-}
-
-struct ImageURL: Codable {
-    var small: String?
-    var medium: String?
-    var large: String?
-}
