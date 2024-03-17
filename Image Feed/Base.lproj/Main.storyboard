@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_screen_logo" translatesAutoresizingMaskIntoConstraints="NO" id="xQS-nP-uXp">
-                                <rect key="frame" x="177" y="294" width="60" height="60"/>
+                                <rect key="frame" x="177" y="418" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="8pe-ih-sZH"/>
                                     <constraint firstAttribute="width" constant="60" id="rs5-qF-7hz"/>
@@ -55,7 +55,7 @@
                             <constraint firstItem="xQS-nP-uXp" firstAttribute="centerX" secondItem="MlJ-Gd-pWf" secondAttribute="centerX" id="NuX-Ge-MXg"/>
                             <constraint firstItem="Zhi-tI-Fuc" firstAttribute="bottom" secondItem="XyU-OJ-E72" secondAttribute="bottom" constant="124" id="Yfe-3Y-dCz"/>
                             <constraint firstItem="XyU-OJ-E72" firstAttribute="centerX" secondItem="MlJ-Gd-pWf" secondAttribute="centerX" id="fii-Be-JcI"/>
-                            <constraint firstItem="xQS-nP-uXp" firstAttribute="centerY" secondItem="MlJ-Gd-pWf" secondAttribute="centerY" constant="-124" id="oSW-MN-JMp"/>
+                            <constraint firstItem="xQS-nP-uXp" firstAttribute="centerY" secondItem="MlJ-Gd-pWf" secondAttribute="centerY" id="oSW-MN-JMp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g04-KN-mZq"/>
