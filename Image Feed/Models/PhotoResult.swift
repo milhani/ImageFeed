@@ -21,3 +21,7 @@ struct PhotoResult: Codable {
         case likedByUser = "liked_by_user"
     }
 }
+
+struct PhotoLiked: Codable {
+    var photo: PhotoResult
+}

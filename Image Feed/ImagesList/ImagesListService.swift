@@ -51,4 +51,45 @@ final class ImagesListService {
             }
         }
     }
+    
+    func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<PhotoLiked, Error>) -> Void) {
+        var method = "POST"
+        if isLike { method = "DELETE" }
+        guard let url = URL(string: "https://api.unsplash.com"),
+              var request = URLRequest.makeHTTPRequest(path: "/photos/\(photoId)/like", httpMethod: method,
+                                                       baseURL: url)
+        else { return }
+        
+        if let token = oauth2TokenStorage.token {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+        
+        //assert(Thread.isMainThread)
+        
+        task = urlSession.objectTask(for: request) { [weak self] (response: Result<PhotoLiked, Error>)  in
+            guard let self else { return }
+            self.task = nil
+            switch response {
+            case .success(let body):
+                DispatchQueue.main.async {
+                    if let index = self.photos.firstIndex(where: { $0.id == photoId }) {
+                        let photo = self.photos[index]
+                        let newPhoto = Photo(
+                            id: photo.id,
+                            size: photo.size,
+                            createdAt: photo.createdAt,
+                            welcomeDescription: photo.welcomeDescription,
+                            thumbImageURL: photo.thumbImageURL,
+                            largeImageURL: photo.largeImageURL,
+                            isLiked: body.photo.likedByUser
+                        )
+                        self.photos[index] = newPhoto
+                    }
+                }
+                completion(.success(body))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }
