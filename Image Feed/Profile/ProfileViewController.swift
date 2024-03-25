@@ -10,8 +10,9 @@ final class ProfileViewController: UIViewController {
     private var descriptionLabel = UILabel()
     private var logoutButton = UIButton()
     
-    private let profileService = ProfileService.shared
     private var profileImageServiceObserver: NSObjectProtocol?
+    
+    private let profileService = ProfileService.shared
     private let oauth2TokenStorage = OAuth2TokenStorage()
     private let imagesListService = ImagesListService.shared
     
@@ -172,6 +173,22 @@ final class ProfileViewController: UIViewController {
         imagesListService.cleanPhotos()
     }
     
+    private func cleanView() {
+        for view in view.subviews {
+            if let view = view as? UILabel {
+                view.removeFromSuperview()
+            } else if let view = view as? UIImageView {
+                view.image = UIImage(systemName: "person.crop.circle.fill")
+                view.tintColor = .ypGray
+                view.widthAnchor.constraint(equalToConstant: 70).isActive = true
+                view.heightAnchor.constraint(equalToConstant: 70).isActive = true
+            }
+        }
+        
+        guard let window = UIApplication.shared.windows.first else { preconditionFailure("Invalid Configuration") }
+        window.rootViewController = SplashViewController()
+    }
+    
     @objc
     private func updateAvatar(notification: Notification) {
         guard
@@ -203,22 +220,19 @@ final class ProfileViewController: UIViewController {
     
     @objc
     private func didTapLogoutButton() {
-        cleanCookies()
-        cleanToken()
-        cleanPhotos()
-        
-        for view in view.subviews {
-            if let view = view as? UILabel {
-                view.removeFromSuperview()
-            } else if let view = view as? UIImageView {
-                view.image = UIImage(systemName: "person.crop.circle.fill")
-                view.tintColor = .ypGray
-                view.widthAnchor.constraint(equalToConstant: 70).isActive = true
-                view.heightAnchor.constraint(equalToConstant: 70).isActive = true
-            }
+        let alertController = UIAlertController(title: "Пока, пока!",
+                                                message: "Уверены, что хотите выйти?",
+                                                preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Нет",
+                                   style: .cancel)
+        let action = UIAlertAction(title: "Да", style: .default) { _ in
+            self.cleanCookies()
+            self.cleanToken()
+            self.cleanPhotos()
+            self.cleanView()
         }
-        
-        guard let window = UIApplication.shared.windows.first else { preconditionFailure("Invalid Configuration") }
-        window.rootViewController = SplashViewController()
+        alertController.addAction(action)
+        alertController.addAction(cancel)
+        present(alertController, animated: true)
     }
 }

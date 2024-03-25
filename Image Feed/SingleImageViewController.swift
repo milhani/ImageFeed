@@ -77,7 +77,8 @@ final class SingleImageViewController: UIViewController {
             case .success(let imageResult):
                 self.image = imageResult.image
                 self.rescaleAndCenterImageInScrollView(image: imageResult.image)
-            case .failure:
+            case .failure(let error):
+                print("[loadImage]: \(error.localizedDescription)")
                 self.showError()
             }
         }
