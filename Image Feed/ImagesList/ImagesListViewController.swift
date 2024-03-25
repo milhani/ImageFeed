@@ -133,5 +133,10 @@ extension ImagesListViewController: ImagesListCellDelegate {
                 UIBlockingProgressHUD.dismiss()
             }
         }
+
+        guard let date = imagesListService.photos[indexPath.row].createdAt else { return }
+        cell.dateLabel.text = dateFormatter.string(from: date)
+        
+        //cell.del
     }
 }
