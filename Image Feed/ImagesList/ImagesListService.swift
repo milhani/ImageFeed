@@ -92,4 +92,8 @@ final class ImagesListService {
             }
         }
     }
+    
+    func cleanPhotos() {
+        photos.removeAll()
+    }
 }

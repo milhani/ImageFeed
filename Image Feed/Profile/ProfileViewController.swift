@@ -1,5 +1,6 @@
 import Kingfisher
 import UIKit
+import WebKit
 
 final class ProfileViewController: UIViewController {
     
@@ -11,6 +12,8 @@ final class ProfileViewController: UIViewController {
     
     private let profileService = ProfileService.shared
     private var profileImageServiceObserver: NSObjectProtocol?
+    private let oauth2TokenStorage = OAuth2TokenStorage()
+    private let imagesListService = ImagesListService.shared
     
     override init(nibName: String?, bundle: Bundle?) {
         super.init(nibName: nibName, bundle: bundle)
@@ -152,6 +155,23 @@ final class ProfileViewController: UIViewController {
         avatarImage.kf.setImage(with: url, options: [.processor(processor)])
     }
     
+    private func cleanCookies() {
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            records.forEach { record in
+                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+            }
+        }
+    }
+    
+    private func cleanToken() {
+        oauth2TokenStorage.cleanToken()
+    }
+    
+    private func cleanPhotos() {
+        imagesListService.cleanPhotos()
+    }
+    
     @objc
     private func updateAvatar(notification: Notification) {
         guard
@@ -183,6 +203,10 @@ final class ProfileViewController: UIViewController {
     
     @objc
     private func didTapLogoutButton() {
+        cleanCookies()
+        cleanToken()
+        cleanPhotos()
+        
         for view in view.subviews {
             if let view = view as? UILabel {
                 view.removeFromSuperview()
@@ -193,5 +217,8 @@ final class ProfileViewController: UIViewController {
                 view.heightAnchor.constraint(equalToConstant: 70).isActive = true
             }
         }
+        
+        guard let window = UIApplication.shared.windows.first else { preconditionFailure("Invalid Configuration") }
+        window.rootViewController = SplashViewController()
     }
 }
