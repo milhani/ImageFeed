@@ -9,7 +9,6 @@ final class ProfileService {
     private init() {}
     
     func fetchProfile(_ token: String, completion: @escaping (Result<Profile, Error>) -> Void) {
-        
         guard let url = URL(string: "https://api.unsplash.com"),
               var request = URLRequest.makeHTTPRequest(path: "/me", httpMethod: "GET", baseURL: url)
         else { return }
