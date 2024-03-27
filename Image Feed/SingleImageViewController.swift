@@ -1,3 +1,5 @@
+import Kingfisher
+import ProgressHUD
 import UIKit
 
 final class SingleImageViewController: UIViewController {
@@ -18,12 +20,14 @@ final class SingleImageViewController: UIViewController {
         }
     }
     
+    var fullImageUrl: URL?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadImage()
+        scrollView.delegate = self
         scrollView.minimumZoomScale = 0.1
         scrollView.maximumZoomScale = 8 //1.25
-        imageView.image = image
-        rescaleAndCenterImageInScrollView(image: image)
     }
     
     @IBAction func didTapBackButton() {
@@ -32,19 +36,18 @@ final class SingleImageViewController: UIViewController {
     
     @IBAction func didTapShareButton(_ sender: Any) {
         let share = UIActivityViewController(
-            activityItems: [image],
+            activityItems: [image as Any],
             applicationActivities: nil
         )
         present(share, animated: true, completion: nil)
     }
     
     private func rescaleAndCenterImageInScrollView(image: UIImage) {
-        if let image = imageView.image {
-            let zoom = max(scrollView.bounds.size.width / image.size.width,
-                              scrollView.bounds.size.height / image.size.height)
-            scrollView.setZoomScale(zoom, animated: false)
-            scrollView.layoutIfNeeded()
-        }
+        let zoom = max(scrollView.bounds.size.width / image.size.width,
+                          scrollView.bounds.size.height / image.size.height)
+        scrollView.setZoomScale(zoom, animated: false)
+        scrollView.layoutIfNeeded()
+
     }
     
     private func updateConstraints() {
@@ -63,6 +66,43 @@ final class SingleImageViewController: UIViewController {
             
             view.layoutIfNeeded()
         }
+    }
+    
+    private func loadImage() {
+        UIBlockingProgressHUD.show()
+        imageView.kf.setImage(with: fullImageUrl) { [weak self] result in
+            UIBlockingProgressHUD.dismiss()
+            guard let self = self else { return }
+            switch result {
+            case .success(let imageResult):
+                self.image = imageResult.image
+                self.rescaleAndCenterImageInScrollView(image: imageResult.image)
+            case .failure(let error):
+                print("[loadImage]: \(error.localizedDescription)")
+                self.showError()
+            }
+        }
+    }
+    
+    private func showError() {
+        let alertController = UIAlertController(
+            title: "Что-то пошло не так",
+            message: "Попробовать ещё раз?",
+            preferredStyle: .alert
+        )
+        let cancel = UIAlertAction(
+            title: "Не надо",
+            style: .default
+        )
+        let action = UIAlertAction(
+            title: "Повторить",
+            style: .default
+        ) { _ in
+            self.loadImage()
+        }
+        alertController.addAction(action)
+        alertController.addAction(cancel)
+        present(alertController, animated: true)
     }
 }
 
