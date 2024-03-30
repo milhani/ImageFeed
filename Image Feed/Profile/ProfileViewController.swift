@@ -124,6 +124,7 @@ final class ProfileViewController: UIViewController & ProfileViewControllerProto
             action: #selector(Self.didTapLogoutButton)
         )
         logoutButton.tintColor = .ypRed
+        logoutButton.accessibilityIdentifier = "logoutButton"
     }
     
     func updateProfileDetails(profile: Profile) {
