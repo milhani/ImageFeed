@@ -55,9 +55,11 @@ final class ProfileViewController: UIViewController & ProfileViewControllerProto
         
         createConstraint()
         
-        let presenter = ProfileViewPresenter()
-        self.presenter = presenter
-        self.presenter?.view = self
+        if self.presenter == nil {
+            let presenter = ProfileViewPresenter()
+            self.presenter = presenter
+            self.presenter?.view = self
+        }
         self.presenter?.viewDidLoad()
         
         profileImageServiceObserver = NotificationCenter.default
@@ -133,7 +135,7 @@ final class ProfileViewController: UIViewController & ProfileViewControllerProto
     
     func updateProfileDetails(profile: Profile) {
         self.nameLabel.text = profile.name
-        self.loginNameLabel.text = profile.username
+        self.loginNameLabel.text = "@\(profile.username)"
         self.descriptionLabel.text = profile.bio
     }
     

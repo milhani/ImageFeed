@@ -31,9 +31,11 @@ final class ImagesListViewController: UIViewController & ImagesListViewControlle
         tableView.delegate = self
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
         
-        let presenter = ImagesListViewPresenter()
-        self.presenter = presenter
-        self.presenter?.view = self
+        if self.presenter == nil {
+            let presenter = ImagesListViewPresenter()
+            self.presenter = presenter
+            self.presenter?.view = self
+        }
         self.presenter?.fetchPhotos()
         
         imagesListServiceObserver = NotificationCenter.default
