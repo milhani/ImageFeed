@@ -30,7 +30,11 @@ final class ImagesListViewController: UIViewController & ImagesListViewControlle
         super.viewDidLoad()
         tableView.delegate = self
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
-        presenter?.fetchPhotos()
+        
+        let presenter = ImagesListViewPresenter()
+        self.presenter = presenter
+        self.presenter?.view = self
+        self.presenter?.fetchPhotos()
         
         imagesListServiceObserver = NotificationCenter.default
             .addObserver(
@@ -127,9 +131,9 @@ extension ImagesListViewController: ImagesListCellDelegate {
         imagesListService.changeLike(photoId: photo.id, isLike: photo.isLiked) { [weak self] result in
             guard let self else { return }
             switch result {
-            case .success(_):
+            case .success(let body):
                 presenter?.photos = self.imagesListService.photos
-                cell.setIsLiked(!self.photos[indexPath.row].isLiked)
+                cell.setIsLiked(body.photo.likedByUser)
                 UIBlockingProgressHUD.dismiss()
             case .failure:
                 UIBlockingProgressHUD.dismiss()

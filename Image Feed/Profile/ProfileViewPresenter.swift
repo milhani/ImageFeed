@@ -16,6 +16,7 @@ final class ProfileViewPresenter: ProfileViewPresenterProtocol {
     private let imagesListService = ImagesListService.shared
     
     func viewDidLoad() {
+        
         guard let profile = profileService.profile else { return }
         view?.updateProfileDetails(profile: profile)
         

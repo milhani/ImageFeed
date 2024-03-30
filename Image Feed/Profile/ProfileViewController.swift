@@ -54,7 +54,11 @@ final class ProfileViewController: UIViewController & ProfileViewControllerProto
         }
         
         createConstraint()
-        presenter?.viewDidLoad()
+        
+        let presenter = ProfileViewPresenter()
+        self.presenter = presenter
+        self.presenter?.view = self
+        self.presenter?.viewDidLoad()
         
         profileImageServiceObserver = NotificationCenter.default
             .addObserver(
