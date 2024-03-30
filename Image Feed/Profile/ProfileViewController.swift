@@ -2,7 +2,14 @@ import Kingfisher
 import UIKit
 import WebKit
 
-final class ProfileViewController: UIViewController {
+protocol ProfileViewControllerProtocol: AnyObject {
+    var presenter: ProfileViewPresenterProtocol? { get set }
+    func updateAvatar(url: URL)
+    func updateProfileDetails(profile: Profile)
+    func cleanView()
+}
+
+final class ProfileViewController: UIViewController & ProfileViewControllerProtocol {
     
     private var avatarImage = UIImageView()
     private var nameLabel = UILabel()
@@ -11,10 +18,7 @@ final class ProfileViewController: UIViewController {
     private var logoutButton = UIButton()
     
     private var profileImageServiceObserver: NSObjectProtocol?
-    
-    private let profileService = ProfileService.shared
-    private let oauth2TokenStorage = OAuth2TokenStorage()
-    private let imagesListService = ImagesListService.shared
+    var presenter: ProfileViewPresenterProtocol?
     
     override init(nibName: String?, bundle: Bundle?) {
         super.init(nibName: nibName, bundle: bundle)
@@ -50,14 +54,7 @@ final class ProfileViewController: UIViewController {
         }
         
         createConstraint()
-        
-        guard let profile = profileService.profile else { return }
-        updateProfileDetails(profile: profile)
-        
-        if let avatarURL = ProfileImageService.shared.avatarURL,
-           let url = URL(string: avatarURL) {
-            updateAvatar(url: url)
-        }
+        presenter?.viewDidLoad()
         
         profileImageServiceObserver = NotificationCenter.default
             .addObserver(
@@ -129,7 +126,7 @@ final class ProfileViewController: UIViewController {
         logoutButton.tintColor = .ypRed
     }
     
-    private func updateProfileDetails(profile: Profile) {
+    func updateProfileDetails(profile: Profile) {
         self.nameLabel.text = profile.name
         self.loginNameLabel.text = profile.username
         self.descriptionLabel.text = profile.bio
@@ -150,30 +147,13 @@ final class ProfileViewController: UIViewController {
             object: nil)
     }
     
-    private func updateAvatar(url: URL) {
+    func updateAvatar(url: URL) {
         avatarImage.kf.indicatorType = .activity
         let processor = RoundCornerImageProcessor(cornerRadius: 35)
         avatarImage.kf.setImage(with: url, options: [.processor(processor)])
     }
     
-    private func cleanCookies() {
-        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
-        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
-            records.forEach { record in
-                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
-            }
-        }
-    }
-    
-    private func cleanToken() {
-        oauth2TokenStorage.cleanToken()
-    }
-    
-    private func cleanPhotos() {
-        imagesListService.cleanPhotos()
-    }
-    
-    private func cleanView() {
+    func cleanView() {
         for view in view.subviews {
             if let view = view as? UILabel {
                 view.removeFromSuperview()
@@ -184,9 +164,6 @@ final class ProfileViewController: UIViewController {
                 view.heightAnchor.constraint(equalToConstant: 70).isActive = true
             }
         }
-        
-        guard let window = UIApplication.shared.windows.first else { preconditionFailure("Invalid Configuration") }
-        window.rootViewController = SplashViewController()
     }
     
     @objc
@@ -226,10 +203,7 @@ final class ProfileViewController: UIViewController {
         let cancel = UIAlertAction(title: "Нет",
                                    style: .cancel)
         let action = UIAlertAction(title: "Да", style: .default) { _ in
-            self.cleanCookies()
-            self.cleanToken()
-            self.cleanPhotos()
-            self.cleanView()
+            self.presenter?.cleanUserData()
         }
         alertController.addAction(action)
         alertController.addAction(cancel)
